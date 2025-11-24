@@ -129,18 +129,11 @@
       white-space: nowrap;
     }
 
-    /* Mobile hamburger button */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: #e5e7eb;
-      padding: 0.4rem 0.7rem;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
+/* default: no hamburger on large screens */
+.mobile-menu-btn {
+  display: none;
+}
+    
     main {
       max-width: 1040px;
       margin: 0 auto;
@@ -670,6 +663,13 @@
     @media (max-width: 880px) {
       .mobile-menu-btn {
         display: block;
+        background: none;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        color: #e5e7eb;
+        padding: 0.4rem 0.7rem;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        cursor: pointer;
       }
 
       nav ul {
