@@ -6,6 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Portfolio website of Dijesh Shrestha, a C#/.NET software developer based in Virginia." />
   <meta name="keywords" content="Dijesh Shrestha, C# developer, .NET developer, backend developer, Virginia, Azure DevOps, SQL Server" />
+  <meta name="author" content="Dijesh Shrestha" />
+  <link rel="canonical" href="https://dijesh1.github.io/dijesh-portfolio/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dijesh Shrestha | Software Developer" />
+  <meta property="og:description" content="C#/.NET backend developer specializing in APIs, background jobs, and financial/benefits systems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dijesh1.github.io/dijesh-portfolio/" />
+  <meta property="og:image" content="preview.png" />
+  <meta property="og:site_name" content="Dijesh Shrestha Portfolio" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dijesh Shrestha | Software Developer" />
+  <meta name="twitter:description" content="C#/.NET backend developer focusing on APIs, background jobs, SQL Server, and Azure DevOps." />
+  <meta name="twitter:image" content="preview.png" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -95,6 +111,12 @@
       font-size: 0.8rem;
       background: radial-gradient(circle at 30% 0, rgba(34, 197, 94, 0.2), rgba(15, 23, 42, 1));
       box-shadow: 0 0 18px rgba(34, 197, 94, 0.4);
+      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    .logo-badge:hover {
+      transform: translateY(-1px) scale(1.05);
+      box-shadow: 0 0 24px rgba(34, 197, 94, 0.6);
     }
 
     nav ul {
@@ -129,11 +151,11 @@
       white-space: nowrap;
     }
 
-/* default: no hamburger on large screens */
-.mobile-menu-btn {
-  display: none;
-}
-    
+    /* default: no hamburger on large screens */
+    .mobile-menu-btn {
+      display: none;
+    }
+
     main {
       max-width: 1040px;
       margin: 0 auto;
@@ -541,11 +563,12 @@
       gap: 0.55rem;
       font-size: 0.9rem;
       transition: var(--transition-fast);
+      transform: translateY(0);
     }
 
     .project-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.8);
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
       border-color: rgba(34, 197, 94, 0.7);
     }
 
@@ -659,6 +682,18 @@
       color: #9ca3af;
     }
 
+    /* Scroll-in animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Responsive */
     @media (max-width: 880px) {
       .mobile-menu-btn {
@@ -763,7 +798,7 @@
 
   <main>
     <!-- HERO -->
-    <section id="hero">
+    <section id="hero" class="fade-in">
       <div>
         <p class="hero-kicker">Software developer · .NET · C#</p>
         <h1 class="hero-title">
@@ -812,7 +847,7 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="fade-in">
       <div class="section-header">
         <div>
           <h2>About</h2>
@@ -859,7 +894,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills">
+    <section id="skills" class="fade-in">
       <div class="section-header">
         <div>
           <h2>Skills</h2>
@@ -903,7 +938,7 @@
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experience">
+    <section id="experience" class="fade-in">
       <div class="section-header">
         <div>
           <h2>Experience</h2>
@@ -957,7 +992,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects">
+    <section id="projects" class="fade-in">
       <div class="section-header">
         <div>
           <h2>Projects</h2>
@@ -974,8 +1009,6 @@
           <div class="project-meta">Backend processor · Production</div>
           <p class="project-desc">
             Worked on processors that handle settlement and reconciliation events from external providers.
-            Fixed issues where a single invalid transaction could prevent an entire batch from saving and
-            improved error logging and data integrity.
           </p>
           <div class="project-tags">
             <span class="project-tag">C#</span>
@@ -1018,7 +1051,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
+    <section id="contact" class="fade-in">
       <div class="section-header">
         <div>
           <h2>Contact</h2>
@@ -1050,14 +1083,14 @@
               <strong>LinkedIn</strong>
               <span>Professional profile & experience</span>
             </div>
-            <a href="https://www.linkedin.com/in/dijesh-shrestha-162244218/" target="_blank">View profile</a>
+            <a href="https://www.linkedin.com/in/dijesh-shrestha-162244218/" target="_blank" rel="noreferrer">View profile</a>
           </div>
           <div class="contact-pill">
             <div>
               <strong>GitHub</strong>
               <span>Side projects & experiments</span>
             </div>
-            <a href="https://github.com/dijesh1" target="_blank">View GitHub</a>
+            <a href="https://github.com/dijesh1" target="_blank" rel="noreferrer">View GitHub</a>
           </div>
         </div>
       </div>
@@ -1082,6 +1115,33 @@
         navList.classList.toggle("active");
       });
     }
+
+    // Close mobile menu when a nav link is clicked (small screens)
+    const navLinks = document.querySelectorAll("nav ul li a");
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 880 && navList.classList.contains("active")) {
+          navList.classList.remove("active");
+        }
+      });
+    });
+
+    // Scroll-in animations
+    const faders = document.querySelectorAll(".fade-in");
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    faders.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
